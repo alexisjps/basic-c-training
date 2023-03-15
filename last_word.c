@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_sentence.c                                 :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexisstephan <alexisstephan@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 23:41:25 by alexissteph       #+#    #+#             */
-/*   Updated: 2023/02/28 23:57:41 by alexissteph      ###   ########.fr       */
+/*   Created: 2023/03/02 20:52:00 by alexissteph       #+#    #+#             */
+/*   Updated: 2023/03/02 21:16:36 by alexissteph      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
-// char put(char *a)
-// {
-//     write(1, &a, 1);
-// }
 
-int reverse(char *str)
+int		ft_isblank(char c)
 {
-    int index;
-
-    index = 0;
-    while (str[index])
-    {
-        index++;
-    }
-    while (str[index])
-    {
-        index--;
-    }
-    // str[index] = '\0';
-    return (str);
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }
 
-int main()
+int		main(int ac, char **av)
 {
-    printf("%s", reverse("alexis"));
+	if (ac == 2)
+	{
+		while (*av[1])
+			av[1]++;
+		av[1]--;
+		while (ft_isblank(*av[1]))
+			av[1]--;
+		while (*av[1] && !ft_isblank(*av[1]))
+			av[1]--;
+		av[1]++;
+		while (*av[1] && !ft_isblank(*av[1]))
+			write(1, av[1]++, 1);
+	}
+	write(1, "\n", 1);
+	return (0);
 }
